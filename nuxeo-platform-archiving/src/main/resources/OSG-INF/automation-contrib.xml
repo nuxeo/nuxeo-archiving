@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.archiving.automation.contrib" version="1.0">
+
+   <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+    point="operations">
+      <operation class="org.nuxeo.platform.archiving.operation.CopyDocumentsInTargetRepository" />
+    </extension>
+      
+   <extension point="chains"
+    target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
+    
+    <chain id="updateLifeCycleChain">
+     <operation id="Document.SetLifeCycle">
+      	<param type="string" name="value">expr:Context.get("value")</param>
+      </operation>
+    </chain>
+    
+    <chain id="copyDocumentsInRepoChain">
+     <operation id="Document.CopyInRepository">
+      	<param type="string" name="targetRepositoryName">expr:Context.get("targetRepositoryName")</param>
+      	<param type="string" name="parentPath">expr:Context.get("parentPath")</param>
+      </operation>
+    </chain>
+    
+    <chain id="archivingChain">
+      <operation id="Document.PageProvider">
+      	  <param type="string" name="query">expr:Context.get("query")</param>
+          <param type="string" name="pageSize">expr:Context.get("pageSize")</param>
+          <param type="string" name="providerName">expr:Context.get("providerName")</param>
+          <param type="string" name="language">expr:Context.get("language")</param>
+          <param type="stringList" name="sortInfo">expr:Context.get("sortInfo")</param>
+          <param type="stringList" name="queryParams">expr:Context.get("queryParams")</param>
+      </operation>
+      <operation id="Context.RunOperationOnProvider">
+      	<param type="string" name="id">expr:Context.get("id")</param>
+      	<param type="boolean" name="isolate">false</param>
+      </operation>
+    </chain>
+  </extension>
+</component>

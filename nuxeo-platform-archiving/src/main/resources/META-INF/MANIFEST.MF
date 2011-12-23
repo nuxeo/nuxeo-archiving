@@ -1,0 +1,10 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Name: Nuxeo Archiving
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Nuxeo
+Bundle-Version: 5.6.qualifier
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.nuxeo.ecm.archiving
+Nuxeo-Component: OSG-INF/automation-contrib.xml
